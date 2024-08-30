@@ -5,10 +5,12 @@ import com.student.sample.model.Major
 import com.student.sample.model.Student
 import com.student.sample.repository.StudentRepository
 import spock.lang.Specification
+import spock.lang.Subject
 
 class StudentServiceSpec extends Specification {
 
     def studentRepoMock = Mock(StudentRepository)
+    @Subject
     def studentService = new StudentService(studentRepoMock)
 
     def "should call save method for student" () {
