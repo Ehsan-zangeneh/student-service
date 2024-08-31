@@ -1,20 +1,14 @@
 package com.student.sample.service
 
+import com.student.sample.common.integration.IntegrationSpec
 import com.student.sample.dto.StudentDto
 import com.student.sample.model.Major
 import com.student.sample.model.Student
 import com.student.sample.repository.StudentRepository
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
-import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.context.ActiveProfiles
-import spock.lang.Specification
 import spock.lang.Subject
 
-@SpringBootTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@ActiveProfiles("test")
-class StudentServiceIntegrationSpec extends Specification {
+class StudentServiceIntegrationSpec extends IntegrationSpec {
 
     @Autowired
     StudentRepository repository
@@ -39,6 +33,7 @@ class StudentServiceIntegrationSpec extends Specification {
                     .build())
         }
 
+
         when:
         def result = studentService.getByNationalCode(totalNumber + "")
 
@@ -48,10 +43,8 @@ class StudentServiceIntegrationSpec extends Specification {
             it.nationalCode == totalNumber + ""
         }
 
-        cleanup:
-        repository.deleteAll()
-
     }
+
 
     def"should throw exception for duplicate national code"() {
         given:
@@ -80,9 +73,6 @@ class StudentServiceIntegrationSpec extends Specification {
 
         then:
             thrown(RuntimeException)
-
-        cleanup:
-        repository.deleteAll()
 
     }
 
