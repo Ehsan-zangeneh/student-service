@@ -2,6 +2,7 @@ package com.student.sample.controller;
 
 import com.student.sample.dto.StudentDto;
 import com.student.sample.service.StudentService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ public class StudentController {
     private final StudentService studentService;
 
     @PostMapping("/register")
-    public void register(@RequestBody StudentDto studentDto) {
+    public void register(@Valid @RequestBody StudentDto studentDto) {
         studentService.save(studentDto);
     }
 
