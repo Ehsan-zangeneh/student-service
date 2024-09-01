@@ -11,3 +11,10 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+
+logging:
+  level:
+    root: INFO            #Entire application
+    org.springframework.web: INFO
+    com.student.sample: DEBUG    #All classes here

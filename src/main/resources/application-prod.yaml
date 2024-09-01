@@ -1,0 +1,8 @@
+spring:
+  profiles: prod
+
+logging:
+  level:
+    root: INFO
+    com.student.sample: ERROR
+    org.springframework.web: INFO

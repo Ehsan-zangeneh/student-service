@@ -1,5 +1,6 @@
 package com.student.sample.controller
 
+import com.student.sample.advice.ErrorMessage
 import com.student.sample.common.integration.IntegrationSpec
 import com.student.sample.dto.StudentDto
 import com.student.sample.model.Major
@@ -9,7 +10,7 @@ class StudentControllerInt extends IntegrationSpec {
 
 
     @Unroll
-    def"should respond properly to the registration request"() {
+    def"should return an appropriate error message for an incorrect request"() {
         given:
         def studentDto = StudentDto.builder()
                 .name(nameParam)
@@ -19,10 +20,10 @@ class StudentControllerInt extends IntegrationSpec {
                 .build()
 
         when:
-        def response = restTemplate.postForEntity("/student/register", studentDto, String.class)
+        def response = restTemplate.postForEntity("/student/register", studentDto, ErrorMessage.class)
 
         then:
-        response.body.split(",").find {
+        response.body.message.split(",").find {
             expectedMessage.contains(it)
         }
 
