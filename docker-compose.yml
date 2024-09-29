@@ -1,29 +1,29 @@
 version: '3'
 services:
 
-#  postgres1:
-#    image: docker.arvancloud.ir/postgres
-#    container_name: database
-#    environment:
-#      POSTGRES_USER: ehsan
-#      POSTGRES_PASSWORD: ehsan
-#      POSTGRES_DB: studentdb
-#    ports:
-#      - "5432:5432"
-#    networks:
-#      - my-network
-
-  #student-service
-  student-app:
-    image: student-service
-    container_name: student.service
+  postgres1:
+    image: docker.arvancloud.ir/postgres
+    container_name: database
+    environment:
+      POSTGRES_USER: ehsan
+      POSTGRES_PASSWORD: ehsan
+      POSTGRES_DB: studentdb
     ports:
-      - "8380:8380"
-      - "5005:5005"
-    environment: #for attaching the IDE to the container for debugging
-      - JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,address=*:5005,server=y,suspend=n
+      - "5432:5432"
     networks:
       - my-network
+
+    #student-service
+    student-app:
+      image: student-service
+      container_name: student.service
+      ports:
+        - "8380:8380"
+#        - "5005:5005"
+#      environment: #for attaching the IDE to the container for debugging
+#        - JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,address=*:5005,server=y,suspend=n
+      networks:
+        - my-network
 
 networks:
   my-network:

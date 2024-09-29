@@ -2,12 +2,10 @@ package com.student.sample.dto;
 
 import com.student.sample.model.Major;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Value;
-
 import java.time.LocalDateTime;
 
 @Builder
@@ -26,4 +24,5 @@ public class StudentDto {
     String nationalCode;
     LocalDateTime createdDate;
     LocalDateTime registeredDate;
+
 }

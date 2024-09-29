@@ -19,8 +19,15 @@ public class StudentService {
     private final StudentRepository studentRepository;
 
     public void save(StudentDto studentDto) {
+         /*
+            trace level is usually not used.
+            here it is active only for the dev profile
+        */
         log.trace("Method save called");
-        log.info("Received parameter for method save {}",studentDto);
+        /*
+          active for dev and test profile
+        */
+        log.debug("Received parameter for method save {}",studentDto);
         studentRepository.save(Student.builder()
                         .name(studentDto.getName())
                         .family(studentDto.getFamily())
@@ -32,6 +39,10 @@ public class StudentService {
     }
 
     public List<StudentDto> getAll() {
+        /*
+            trace level is usually not used.
+            here it is active only for the dev profile
+        */
         log.trace("Method getAll called");
         return studentRepository.findAll()
                 .stream()
@@ -40,8 +51,15 @@ public class StudentService {
     }
 
     public Optional<StudentDto> getByNationalCode(String nationalCode) {
+         /*
+            trace level is usually not used.
+            here it is active only for the dev profile
+        */
         log.trace("Method getByNationalCode called");
-        log.info("Received parameter for method getByNationalCode {}", nationalCode);
+        /*
+          active for dev and test profile
+        */
+        log.debug("Received parameter for method getByNationalCode {}", nationalCode);
         if(Strings.isBlank(nationalCode))
             return Optional.empty();
         return studentRepository.findByNationalCode(nationalCode)
@@ -49,7 +67,14 @@ public class StudentService {
     }
 
     private StudentDto convert(Student student) {
+        /*
+            trace level is usually not used.
+            here it is active only for the dev profile
+        */
         log.trace("Method getAll called");
+        /*
+           active for dev and test profile
+        */
         log.debug("Received parameter for method convert {}", student);
         return StudentDto.builder()
                 .name(student.getName())
